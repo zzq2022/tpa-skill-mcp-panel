@@ -1579,7 +1579,11 @@ function SkillsSection(props) {
 							children: skill.name
 						}), (0, react_jsx_runtime.jsxs)("span", {
 							className: c.cardTrailing,
-							children: [(0, react_jsx_runtime.jsx)("span", {
+							children: [skill.pluginProvided ? (0, react_jsx_runtime.jsx)("span", {
+								className: c.configTag,
+								style: { background: "var(--dsw-alias-interactive-bg-hover)", color: "var(--dsw-alias-label-secondary)", marginRight: 4 },
+								children: t("badgeBuiltin") ?? "内置"
+							}) : null, (0, react_jsx_runtime.jsx)("span", {
 								className: c.statusDot,
 								"data-enabled": enabled ? "true" : "false",
 								"aria-hidden": "true"
@@ -1645,7 +1649,7 @@ function SkillsSection(props) {
 							}), op?.status === "error" ? (0, react_jsx_runtime.jsx)("span", {
 								className: c.opError,
 								children: t("opFailed")
-							}) : null, (0, react_jsx_runtime.jsx)("button", {
+							}) : null, skill.pluginProvided !== true ? (0, react_jsx_runtime.jsx)("button", {
 								type: "button",
 								className: c.deleteButton,
 								disabled: op?.status === "busy",
@@ -1654,7 +1658,7 @@ function SkillsSection(props) {
 								},
 								"data-confirm": confirmKey === opKeyOf(skill) ? "true" : void 0,
 								children: confirmKey === opKeyOf(skill) ? t("confirmDelete") : t("deleteLabel")
-							})]
+							}) : null]
 						}) : null]
 					}) : null]
 				}, skill.name);
@@ -2250,7 +2254,17 @@ migrator !== null ? (0, react_jsx_runtime.jsx)(MigrateDialog, {
                         currentVersion: "dsh-skill-mcp-panel",
                         checkUpdateAvailable: "发现新版本 v",
                         checkUpdateCurrent: "（当前 v",
-                        checkUpdateHint: "）。可在终端运行 dsh-panel update 更新"
+                        checkUpdateHint: "）。可在终端运行 dsh-panel update 更新",
+                        tabMyServers: "我的服务",
+                        tabPresets: "推荐服务",
+                        presetConfigure: "启用 / 配置",
+                        presetConfigured: "已添加",
+                        presetRequires: "所需凭证：",
+                        presetNoCredentials: "无需额外凭证",
+                        templateSelectLabel: "从内置预设模版快速填充：",
+                        templateSelectDefault: "-- 选择内置预设模版 --",
+                        badgeBuiltin: "系统内置",
+                        badgeCustom: "自定义"
                 };
                 const mcpEn = {
                         nav: "Connectors",
@@ -2330,11 +2344,21 @@ migrator !== null ? (0, react_jsx_runtime.jsx)(MigrateDialog, {
                         currentVersion: "dsh-skill-mcp-panel",
                         checkUpdateAvailable: "Update available: v",
                         checkUpdateCurrent: " (current v",
-                        checkUpdateHint: "). Run dsh-panel update in a terminal to install it"
+                        checkUpdateHint: "). Run dsh-panel update in a terminal to install it",
+                        tabMyServers: "My Services",
+                        tabPresets: "Recommended",
+                        presetConfigure: "Configure / Enable",
+                        presetConfigured: "Added",
+                        presetRequires: "Required Credentials: ",
+                        presetNoCredentials: "No extra credentials needed",
+                        templateSelectLabel: "Quick fill from preset template:",
+                        templateSelectDefault: "-- Select a preset template --",
+                        badgeBuiltin: "Built-in",
+                        badgeCustom: "Custom"
                 };
 
                 const cssMcpEffects = "@keyframes skvFadeIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}@keyframes skvFadeOnly{from{opacity:0}to{opacity:1}}.MCP_card{transition:border-color .18s cubic-bezier(.22,.61,.36,1),box-shadow .18s ease}.MCP_card:hover{border-color:var(--dsw-alias-border-l1);box-shadow:var(--dsw-shadow-lv1)}.MCP_dot{transition:background-color .2s ease}.MCP_input,.MCP_textarea{transition:border-color .15s ease,box-shadow .15s ease}.MCP_transportBtn{transition:background-color .15s ease,border-color .15s ease,color .15s ease}.MCP_actionBtn,.MCP_dangerBtn,.MCP_iconBtn,.MCP_add,.MCP_advancedToggle{transition:background-color .15s ease,border-color .15s ease,transform .1s ease}.MCP_actionBtn:active:not(:disabled),.MCP_dangerBtn:active:not(:disabled),.MCP_iconBtn:active,.MCP_add:active{transform:scale(.96)}.MCP_actionBtn:focus-visible,.MCP_dangerBtn:focus-visible,.MCP_iconBtn:focus-visible,.MCP_add:focus-visible,.MCP_transportBtn:focus-visible{outline:2px solid var(--dsw-alias-state-business-primary);outline-offset:1px}.MCP_cards{animation:skvFadeOnly .2s ease}.MCP_result{animation:skvFadeIn .18s ease}@media (prefers-reduced-motion: reduce){.MCP_section *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}}.MCP_doc{border:1px solid var(--dsw-alias-border-l2);background:var(--dsw-alias-bg-layer-1);border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:8px;animation:skvFadeIn .18s ease}.MCP_doc h4{font-size:13px;font-weight:600;line-height:20px;margin:0}.MCP_doc p{margin:0;color:var(--dsw-alias-label-secondary);font-size:12px;line-height:19px}.MCP_docCode{margin:0;background:var(--dsw-alias-bg-layer-3);border:1px solid var(--dsw-alias-border-l2);border-radius:8px;padding:8px 10px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:11.5px;line-height:17px;color:var(--dsw-alias-label-primary);white-space:pre-wrap;word-break:break-all;overflow-x:auto}";
-const cssMcp = ".MCP_section{position:relative;width:100%;max-width:760px;color:var(--dsw-alias-label-primary);display:flex;flex-direction:column;gap:14px}.MCP_head{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.MCP_head h3{font-size:14px;font-weight:600;line-height:20px;margin:0}.MCP_sub{color:var(--dsw-alias-label-tertiary);font-size:12px;line-height:18px;margin:0}.MCP_toolbar{display:flex;align-items:center;gap:8px}.MCP_add{font:inherit;color:var(--dsw-alias-state-business-primary);cursor:pointer;background:0 0;border:1px dashed var(--dsw-alias-border-l1);border-radius:8px;padding:7px 16px;font-size:13px;line-height:20px;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box}.MCP_add:hover{background:var(--dsw-alias-interactive-bg-hover)}.MCP_cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.MCP_card{border:1px solid var(--dsw-alias-border-l2);background:var(--dsw-alias-bg-layer-3);border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:8px;min-width:0}.MCP_cardTop{display:flex;align-items:center;gap:8px;min-width:0}.MCP_name{font-size:13px;font-weight:600;line-height:20px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.MCP_badges{display:inline-flex;align-items:center;gap:6px;flex:none}.MCP_badge{background:var(--dsw-alias-bg-layer-1);color:var(--dsw-alias-label-secondary);border-radius:5px;padding:1px 6px;font-size:11px;line-height:16px}.MCP_meta{display:flex;align-items:center;gap:8px;color:var(--dsw-alias-label-secondary);font-size:12px;line-height:18px}.MCP_dot{width:7px;height:7px;border-radius:999px;background:var(--dsw-alias-label-tertiary);flex:none}.MCP_dot[data-on=true]{background:var(--dsw-alias-state-success-primary)}.MCP_dot[data-err=true]{background:var(--dsw-alias-state-error-primary)}.MCP_actions{display:flex;align-items:center;gap:8px;border-top:1px solid var(--dsw-alias-border-l2);padding-top:8px;flex-wrap:wrap}.MCP_spacer{flex:1}.MCP_form{display:grid;grid-template-columns:1fr 1fr;gap:10px}.MCP_field{display:flex;flex-direction:column;gap:5px}.MCP_field[data-wide=true]{grid-column:1 / -1}.MCP_label{font-size:12px;line-height:18px;color:var(--dsw-alias-label-secondary);margin:0}.MCP_input{box-sizing:border-box;width:100%;height:32px;font:inherit;font-size:13px;color:var(--dsw-alias-label-primary);background:var(--dsw-alias-bg-layer-1);border:1px solid var(--dsw-alias-border-l2);border-radius:8px;padding:0 8px}.MCP_input:focus-visible,.MCP_textarea:focus-visible{border-color:var(--dsw-alias-state-business-primary);box-shadow:0 0 0 2px color-mix(in srgb, var(--dsw-alias-state-business-primary) 18%, transparent);outline:none}.MCP_textarea{box-sizing:border-box;width:100%;min-height:64px;font:inherit;font-size:12px;line-height:18px;color:var(--dsw-alias-label-primary);background:var(--dsw-alias-bg-layer-1);border:1px solid var(--dsw-alias-border-l2);border-radius:8px;padding:6px 8px;resize:vertical}.MCP_transportRow{display:flex;gap:8px}.MCP_transportBtn{font:inherit;font-size:13px;line-height:20px;color:var(--dsw-alias-label-secondary);cursor:pointer;background:var(--dsw-alias-bg-layer-1);border:1px solid var(--dsw-alias-border-l2);border-radius:999px;padding:4px 14px}.MCP_transportBtn[data-active=true]{color:var(--dsw-alias-state-business-primary);border-color:var(--dsw-alias-state-business-primary);background:color-mix(in srgb, var(--dsw-alias-state-business-primary) 12%, transparent)}.MCP_secretKeys{display:flex;flex-wrap:wrap;gap:6px}.MCP_key{display:inline-flex;align-items:center;gap:6px;background:var(--dsw-alias-bg-layer-1);border:1px solid var(--dsw-alias-border-l2);border-radius:999px;padding:2px 8px;font-size:11px;line-height:16px}.MCP_key button{font:inherit;color:var(--dsw-alias-state-error-primary);cursor:pointer;background:0 0;border:none;padding:0}.MCP_checkRow{display:flex;align-items:center;gap:8px;font-size:12px;line-height:18px;color:var(--dsw-alias-label-secondary)}.MCP_result{border:1px solid var(--dsw-alias-border-l2);border-radius:8px;padding:8px 10px;font-size:12px;line-height:18px;max-height:160px;overflow:auto}.MCP_actionBtn{font:inherit;color:var(--dsw-alias-label-primary);cursor:pointer;background:0 0;border:1px solid var(--dsw-alias-border-l2);border-radius:14px;padding:0 12px;font-size:12px;line-height:26px;height:28px;display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;box-sizing:border-box}.MCP_actionBtn:hover:not(:disabled){background:var(--dsw-alias-interactive-bg-hover-solid)}.MCP_actionBtn:disabled{cursor:default;opacity:.6}.MCP_dangerBtn{font:inherit;color:var(--dsw-alias-state-error-primary);cursor:pointer;background:0 0;border:1px solid var(--dsw-alias-border-l2);border-radius:14px;padding:0 12px;font-size:12px;line-height:26px;height:28px;display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;box-sizing:border-box}.MCP_dangerBtn:hover:not(:disabled){background:var(--dsw-alias-interactive-bg-hover-solid)}.MCP_iconBtn{width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;color:var(--dsw-alias-label-secondary);cursor:pointer;background:0 0;border:1px solid var(--dsw-alias-border-l2);border-radius:6px;padding:0;flex:none}.MCP_iconBtn:hover{background:var(--dsw-alias-interactive-bg-hover);color:var(--dsw-alias-label-primary)}.MCP_advancedToggle{font:inherit;color:var(--dsw-alias-label-secondary);cursor:pointer;background:0 0;border:1px dashed var(--dsw-alias-border-l1);border-radius:8px;padding:6px 12px;font-size:13px;line-height:20px}.MCP_advancedToggle:hover{background:var(--dsw-alias-interactive-bg-hover)}.MCP_result[data-ok=true]{border-color:color-mix(in srgb, var(--dsw-alias-state-success-primary) 40%, transparent);background:color-mix(in srgb, var(--dsw-alias-state-success-primary) 8%, transparent)}.MCP_result[data-ok=false]{border-color:color-mix(in srgb, var(--dsw-alias-state-error-primary) 40%, transparent);background:color-mix(in srgb, var(--dsw-alias-state-error-primary) 8%, transparent)}.MCP_hint{font-size:11px;line-height:16px;color:var(--dsw-alias-label-tertiary);margin:0}.MCP_hint[data-error=true]{color:var(--dsw-alias-state-error-primary)}" + cssMcpEffects;
+const cssMcp = ".MCP_section{position:relative;width:100%;max-width:760px;color:var(--dsw-alias-label-primary);display:flex;flex-direction:column;gap:14px}.MCP_head{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.MCP_head h3{font-size:14px;font-weight:600;line-height:20px;margin:0}.MCP_sub{color:var(--dsw-alias-label-tertiary);font-size:12px;line-height:18px;margin:0}.MCP_toolbar{display:flex;align-items:center;gap:8px}.MCP_add{font:inherit;color:var(--dsw-alias-state-business-primary);cursor:pointer;background:0 0;border:1px dashed var(--dsw-alias-border-l1);border-radius:8px;padding:7px 16px;font-size:13px;line-height:20px;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box}.MCP_add:hover{background:var(--dsw-alias-interactive-bg-hover)}.MCP_cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.MCP_card{border:1px solid var(--dsw-alias-border-l2);background:var(--dsw-alias-bg-layer-3);border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:8px;min-width:0}.MCP_cardTop{display:flex;align-items:center;gap:8px;min-width:0}.MCP_name{font-size:13px;font-weight:600;line-height:20px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.MCP_badges{display:inline-flex;align-items:center;gap:6px;flex:none}.MCP_badge{background:var(--dsw-alias-bg-layer-1);color:var(--dsw-alias-label-secondary);border-radius:5px;padding:1px 6px;font-size:11px;line-height:16px}.MCP_meta{display:flex;align-items:center;gap:8px;color:var(--dsw-alias-label-secondary);font-size:12px;line-height:18px}.MCP_dot{width:7px;height:7px;border-radius:999px;background:var(--dsw-alias-label-tertiary);flex:none}.MCP_dot[data-on=true]{background:var(--dsw-alias-state-success-primary)}.MCP_dot[data-err=true]{background:var(--dsw-alias-state-error-primary)}.MCP_actions{display:flex;align-items:center;gap:8px;border-top:1px solid var(--dsw-alias-border-l2);padding-top:8px;flex-wrap:wrap}.MCP_spacer{flex:1}.MCP_form{display:grid;grid-template-columns:1fr 1fr;gap:10px}.MCP_field{display:flex;flex-direction:column;gap:5px}.MCP_field[data-wide=true]{grid-column:1 / -1}.MCP_label{font-size:12px;line-height:18px;color:var(--dsw-alias-label-secondary);margin:0}.MCP_input{box-sizing:border-box;width:100%;height:32px;font:inherit;font-size:13px;color:var(--dsw-alias-label-primary);background:var(--dsw-alias-bg-layer-1);border:1px solid var(--dsw-alias-border-l2);border-radius:8px;padding:0 8px}.MCP_input:focus-visible,.MCP_textarea:focus-visible{border-color:var(--dsw-alias-state-business-primary);box-shadow:0 0 0 2px color-mix(in srgb, var(--dsw-alias-state-business-primary) 18%, transparent);outline:none}.MCP_textarea{box-sizing:border-box;width:100%;min-height:64px;font:inherit;font-size:12px;line-height:18px;color:var(--dsw-alias-label-primary);background:var(--dsw-alias-bg-layer-1);border:1px solid var(--dsw-alias-border-l2);border-radius:8px;padding:6px 8px;resize:vertical}.MCP_transportRow{display:flex;gap:8px}.MCP_transportBtn{font:inherit;font-size:13px;line-height:20px;color:var(--dsw-alias-label-secondary);cursor:pointer;background:var(--dsw-alias-bg-layer-1);border:1px solid var(--dsw-alias-border-l2);border-radius:999px;padding:4px 14px}.MCP_transportBtn[data-active=true]{color:var(--dsw-alias-state-business-primary);border-color:var(--dsw-alias-state-business-primary);background:color-mix(in srgb, var(--dsw-alias-state-business-primary) 12%, transparent)}.MCP_secretKeys{display:flex;flex-wrap:wrap;gap:6px}.MCP_key{display:inline-flex;align-items:center;gap:6px;background:var(--dsw-alias-bg-layer-1);border:1px solid var(--dsw-alias-border-l2);border-radius:999px;padding:2px 8px;font-size:11px;line-height:16px}.MCP_key button{font:inherit;color:var(--dsw-alias-state-error-primary);cursor:pointer;background:0 0;border:none;padding:0}.MCP_checkRow{display:flex;align-items:center;gap:8px;font-size:12px;line-height:18px;color:var(--dsw-alias-label-secondary)}.MCP_result{border:1px solid var(--dsw-alias-border-l2);border-radius:8px;padding:8px 10px;font-size:12px;line-height:18px;max-height:160px;overflow:auto}.MCP_actionBtn{font:inherit;color:var(--dsw-alias-label-primary);cursor:pointer;background:0 0;border:1px solid var(--dsw-alias-border-l2);border-radius:14px;padding:0 12px;font-size:12px;line-height:26px;height:28px;display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;box-sizing:border-box}.MCP_actionBtn:hover:not(:disabled){background:var(--dsw-alias-interactive-bg-hover-solid)}.MCP_actionBtn:disabled{cursor:default;opacity:.6}.MCP_dangerBtn{font:inherit;color:var(--dsw-alias-state-error-primary);cursor:pointer;background:0 0;border:1px solid var(--dsw-alias-border-l2);border-radius:14px;padding:0 12px;font-size:12px;line-height:26px;height:28px;display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;box-sizing:border-box}.MCP_dangerBtn:hover:not(:disabled){background:var(--dsw-alias-interactive-bg-hover-solid)}.MCP_iconBtn{width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;color:var(--dsw-alias-label-secondary);cursor:pointer;background:0 0;border:1px solid var(--dsw-alias-border-l2);border-radius:6px;padding:0;flex:none}.MCP_iconBtn:hover{background:var(--dsw-alias-interactive-bg-hover);color:var(--dsw-alias-label-primary)}.MCP_advancedToggle{font:inherit;color:var(--dsw-alias-label-secondary);cursor:pointer;background:0 0;border:1px dashed var(--dsw-alias-border-l1);border-radius:8px;padding:6px 12px;font-size:13px;line-height:20px}.MCP_advancedToggle:hover{background:var(--dsw-alias-interactive-bg-hover)}.MCP_result[data-ok=true]{border-color:color-mix(in srgb, var(--dsw-alias-state-success-primary) 40%, transparent);background:color-mix(in srgb, var(--dsw-alias-state-success-primary) 8%, transparent)}.MCP_result[data-ok=false]{border-color:color-mix(in srgb, var(--dsw-alias-state-error-primary) 40%, transparent);background:color-mix(in srgb, var(--dsw-alias-state-error-primary) 8%, transparent)}.MCP_hint{font-size:11px;line-height:16px;color:var(--dsw-alias-label-tertiary);margin:0}.MCP_hint[data-error=true]{color:var(--dsw-alias-state-error-primary)}.MCP_subTabs{display:inline-flex;align-items:center;background:var(--dsw-alias-bg-layer-2,rgba(0,0,0,0.06));border-radius:8px;padding:3px;gap:2px}.MCP_subTab{font:inherit;font-size:12.5px;line-height:18px;font-weight:500;color:var(--dsw-alias-label-secondary);background:transparent;border:none;border-radius:6px;padding:4px 12px;cursor:pointer;transition:all .15s ease}.MCP_subTab[data-active=true]{background:var(--dsw-alias-bg-layer-3,#fff);color:var(--dsw-alias-label-primary);box-shadow:0 1px 3px rgba(0,0,0,0.08)}.MCP_presetDesc{font-size:12px;line-height:17px;color:var(--dsw-alias-label-secondary);margin:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.MCP_presetRequires{font-size:11px;line-height:16px;color:var(--dsw-alias-label-tertiary);margin:0}.MCP_select{box-sizing:border-box;width:100%;height:32px;font:inherit;font-size:12.5px;color:var(--dsw-alias-label-primary);background:var(--dsw-alias-bg-layer-1);border:1px solid var(--dsw-alias-border-l2);border-radius:8px;padding:0 8px}" + cssMcpEffects;
                 const mcpTagId = "dsh-skill-mcp-panel/McpSection.module.css";
                 if (typeof document !== "undefined") {
                         let mcpTag = document.querySelector("style[data-plugin-css=" + JSON.stringify(mcpTagId) + "]") as HTMLElement | null;
@@ -2379,7 +2403,12 @@ const cssMcp = ".MCP_section{position:relative;width:100%;max-width:760px;color:
                         advancedToggle: "MCP_advancedToggle",
                         hint: "MCP_hint",
                         doc: "MCP_doc",
-                        docCode: "MCP_docCode"
+                        docCode: "MCP_docCode",
+                        subTabs: "MCP_subTabs",
+                        subTab: "MCP_subTab",
+                        presetDesc: "MCP_presetDesc",
+                        presetRequires: "MCP_presetRequires",
+                        select: "MCP_select"
                 };
 
                 /**
@@ -2496,13 +2525,13 @@ function mcpWireScalar(text) {
                         return { ...common, transport: "stdio", command: mcpWireScalar(String(form.command ?? "").trim()), args: mcpParseScalarLines(form.argsText), env, cwd: mcpWireScalar(String(form.cwd ?? "").trim()) };
                 }
 
-                function McpFormDialog({ t, initial, onSave, onCancel, busy, error }) {
+                function McpFormDialog({ t, initial, initialForm, presets, onSave, onCancel, busy, error }: any) {
                         const editing = initial !== null && initial !== undefined;
-                        const [form, setForm] = react.useState(() => editing ? formFromServer(initial) : defaultMcpForm());
+                        const [form, setForm] = react.useState(() => editing ? formFromServer(initial) : (initialForm ?? defaultMcpForm()));
                         const [deletedEnv, setDeletedEnv] = react.useState(() => new Set());
                         const [deletedHeaders, setDeletedHeaders] = react.useState(() => new Set());
                         const [advancedOpen, setAdvancedOpen] = react.useState(false);
-                        const set = (patch) => setForm((prev) => ({ ...prev, ...patch }));
+                        const set = (patch: any) => setForm((prev: any) => ({ ...prev, ...patch }));
                         // 名称规则最终由宿主边界校验，撞上只会得到一句泛化错误；
                         // 这里提前拦截并把规则写在字段下面，别让用户对着天书猜。
                         const trimmedName = String(form.serverName ?? "").trim();
@@ -2559,7 +2588,38 @@ function mcpWireScalar(text) {
                                         textArea(text, setText, placeholder)
                                 ]
                         });
+                        const templateField = (!editing && Array.isArray(presets) && presets.length > 0) ? field(
+                                t("templateSelectLabel") ?? "从内置预设模版快速填充：",
+                                (0, react_jsx_runtime.jsxs)("select", {
+                                        className: m.select,
+                                        onChange: (e: any) => {
+                                                const selected = presets.find((p: any) => p.name === e.target.value);
+                                                if (selected) {
+                                                        const f = defaultMcpForm();
+                                                        f.serverName = selected.name;
+                                                        f.transport = selected.type === "streamable-http" || selected.type === "streamableHttp" ? "streamable-http" : "stdio";
+                                                        if (selected.command) f.command = selected.command;
+                                                        if (selected.args) f.argsText = selected.args.join("\n");
+                                                        if (selected.url) f.url = selected.url;
+                                                        if (selected.headers) {
+                                                                f.headersText = Object.entries(selected.headers).map(([k, v]) => `${k}=${v}`).join("\n");
+                                                        }
+                                                        if (selected.env) {
+                                                                f.envText = Object.entries(selected.env).map(([k, v]) => `${k}=${v}`).join("\n");
+                                                        }
+                                                        if (selected.toolTimeout) f.timeout = String(selected.toolTimeout * 1000);
+                                                        setForm(f);
+                                                }
+                                        },
+                                        children: [
+                                                (0, react_jsx_runtime.jsx)("option", { value: "", children: t("templateSelectDefault") ?? "-- 选择内置预设模版 --" }),
+                                                ...presets.map((p: any) => (0, react_jsx_runtime.jsx)("option", { value: p.name, children: (p.displayName || p.name) + " (" + p.name + ")" }, p.name))
+                                        ]
+                                }),
+                                true
+                        ) : null;
                         const fields = [
+                                ...(templateField ? [templateField] : []),
                                 field(t("fieldServerName"), textInput(form.serverName, (value) => set({ serverName: value }), "MCP Server"), false, nameIssue === null ? { text: t("nameHint"), error: false } : { text: nameIssue, error: true }),
                                 field(t("fieldTransport"), (0, react_jsx_runtime.jsxs)("div", {
                                         className: m.transportRow,
@@ -2668,11 +2728,12 @@ function mcpWireScalar(text) {
                                 })
                         });
                 }
-                function McpSection({ t, listMcp, saveMcp, removeMcp, setEnabledMcp, testMcp, reloadMcp, checkUpdateRemote }) {
+                function McpSection({ t, listMcp, saveMcp, removeMcp, setEnabledMcp, testMcp, reloadMcp, checkUpdateRemote }: any) {
                         const [loadState, setLoadState] = react.useState({ kind: "loading" } as any);
-                        const [data, setData] = react.useState(null);
+                        const [data, setData] = react.useState(null as any);
+                        const [mcpSubTab, setMcpSubTab] = react.useState("user");
                         const [request, setRequest] = react.useState(0);
-                        const [editing, setEditing] = react.useState(null);
+                        const [editing, setEditing] = react.useState(null as any);
                         const [dialogBusy, setDialogBusy] = react.useState(false);
                         const [updateBanner, setUpdateBanner] = react.useState(null);
                         const [dialogError, setDialogError] = react.useState(null);
@@ -2710,6 +2771,7 @@ function mcpWireScalar(text) {
                         }, [checkUpdateRemote, t]);
                         const servers = data?.servers ?? [];
                         const external = data?.externalServers ?? [];
+                        const presets = data?.presets ?? [];
                         const patch = data?.patch ?? {};
                         const refresh = (quiet) => setRequest((value) => value + 1);
                         const stateLabel = (server) => {
@@ -2859,6 +2921,87 @@ function mcpWireScalar(text) {
                                         }) : null]
                                 }, server.serverName + (isExternal ? ":external" : ""));
                         };
+                        const presetCard = (preset: any) => {
+                                const isConfigured = preset.configured === true;
+                                const isHttp = preset.type === "streamable-http" || preset.type === "streamableHttp";
+                                return (0, react_jsx_runtime.jsxs)("div", {
+                                        className: m.card,
+                                        children: [
+                                                (0, react_jsx_runtime.jsxs)("div", {
+                                                        className: m.cardTop,
+                                                        children: [
+                                                                (0, react_jsx_runtime.jsx)("span", {
+                                                                        className: m.name,
+                                                                        children: preset.displayName || preset.name
+                                                                }),
+                                                                (0, react_jsx_runtime.jsxs)("span", {
+                                                                        className: m.badges,
+                                                                        children: [
+                                                                                (0, react_jsx_runtime.jsx)("span", {
+                                                                                        className: m.badge,
+                                                                                        children: isHttp ? "HTTP" : "STDIO"
+                                                                                }),
+                                                                                preset.category ? (0, react_jsx_runtime.jsx)("span", {
+                                                                                        className: m.badge,
+                                                                                        children: preset.category
+                                                                                }) : null,
+                                                                                isConfigured ? (0, react_jsx_runtime.jsx)("span", {
+                                                                                        className: m.badge,
+                                                                                        style: { color: "var(--dsw-alias-state-success-primary)", fontWeight: 600 },
+                                                                                        children: t("presetConfigured") ?? "已添加"
+                                                                                }) : null
+                                                                        ]
+                                                                })
+                                                        ]
+                                                }),
+                                                (0, react_jsx_runtime.jsx)("p", {
+                                                        className: m.presetDesc,
+                                                        title: preset.description,
+                                                        children: preset.description || preset.name
+                                                }),
+                                                (0, react_jsx_runtime.jsx)("p", {
+                                                        className: m.presetRequires,
+                                                        children: typeof preset.requires === "string" && preset.requires.trim() !== ""
+                                                                ? (t("presetRequires") ?? "所需凭证：") + preset.requires
+                                                                : Array.isArray(preset.requires) && preset.requires.length > 0
+                                                                        ? (t("presetRequires") ?? "所需凭证：") + preset.requires.join(", ")
+                                                                        : (t("presetNoCredentials") ?? "无需额外凭证")
+                                                }),
+                                                (0, react_jsx_runtime.jsxs)("div", {
+                                                        className: m.actions,
+                                                        children: [
+                                                                (0, react_jsx_runtime.jsx)("span", { className: m.spacer }),
+                                                                (0, react_jsx_runtime.jsx)("button", {
+                                                                        type: "button",
+                                                                        className: isConfigured ? m.actionBtn : m.add,
+                                                                        style: isConfigured ? {} : { padding: "3px 12px", fontSize: "12px", height: "28px" },
+                                                                        onClick: () => {
+                                                                                setDialogError(null);
+                                                                                if (isConfigured) {
+                                                                                        const found = servers.find((s: any) => s.serverName === preset.name);
+                                                                                        if (found) {
+                                                                                                setEditing({ server: found, initialForm: null });
+                                                                                                return;
+                                                                                        }
+                                                                                }
+                                                                                const f = defaultMcpForm();
+                                                                                f.serverName = preset.name;
+                                                                                f.transport = isHttp ? "streamable-http" : "stdio";
+                                                                                if (preset.command) f.command = preset.command;
+                                                                                if (preset.args) f.argsText = preset.args.join("\n");
+                                                                                if (preset.url) f.url = preset.url;
+                                                                                if (preset.headers) f.headersText = Object.entries(preset.headers).map(([k, v]) => `${k}=${v}`).join("\n");
+                                                                                if (preset.env) f.envText = Object.entries(preset.env).map(([k, v]) => `${k}=${v}`).join("\n");
+                                                                                if (preset.toolTimeout) f.timeout = String(preset.toolTimeout * 1000);
+                                                                                setEditing({ server: null, initialForm: f });
+                                                                        },
+                                                                        children: isConfigured ? (t("editTitle") ?? "配置") : (t("presetConfigure") ?? "启用 / 配置")
+                                                                })
+                                                        ]
+                                                })
+                                        ]
+                                }, preset.name);
+                        };
                         return (0, react_jsx_runtime.jsxs)("div", {
                                 className: m.section,
                                 children: [(0, react_jsx_runtime.jsxs)("div", {
@@ -2876,6 +3019,25 @@ function mcpWireScalar(text) {
                                                 children: t !== null ? t("refresh") : ""
                                         })]
                                 }), (0, react_jsx_runtime.jsx)("p", { className: m.sub, children: t !== null ? t("subtitle") : "" }),
+                                (0, react_jsx_runtime.jsxs)("div", {
+                                        className: m.subTabs,
+                                        children: [
+                                                (0, react_jsx_runtime.jsx)("button", {
+                                                        type: "button",
+                                                        className: m.subTab,
+                                                        "data-active": mcpSubTab === "user" ? "true" : "false",
+                                                        onClick: () => setMcpSubTab("user"),
+                                                        children: (t("tabMyServers") ?? "我的服务") + " (" + (servers.length + external.length) + ")"
+                                                }),
+                                                (0, react_jsx_runtime.jsx)("button", {
+                                                        type: "button",
+                                                        className: m.subTab,
+                                                        "data-active": mcpSubTab === "presets" ? "true" : "false",
+                                                        onClick: () => setMcpSubTab("presets"),
+                                                        children: (t("tabPresets") ?? "推荐服务") + " (" + presets.length + ")"
+                                                })
+                                        ]
+                                }),
                         docOpen ? (0, react_jsx_runtime.jsxs)("div", {
                                                         className: m.doc,
                                                         children: [(0, react_jsx_runtime.jsx)("h4", { children: t !== null ? t("docTitle") : "" }), (0, react_jsx_runtime.jsx)("p", { children: t !== null ? t("docLead") : "" }), (0, react_jsx_runtime.jsx)("pre", { className: m.docCode, children: t !== null ? t("docCode") : "" }), (0, react_jsx_runtime.jsx)("p", { children: t !== null ? t("docWhere") : "" }), (0, react_jsx_runtime.jsx)("p", { children: t !== null ? t("docTools") : "" }), (0, react_jsx_runtime.jsx)("p", { children: t !== null ? t("docEnv") : "" }), (0, react_jsx_runtime.jsx)("pre", { className: m.docCode, children: t !== null ? t("docEnvCode") : "" }), (0, react_jsx_runtime.jsx)("p", { children: t !== null ? t("docEnvNote") : "" }), (0, react_jsx_runtime.jsx)("p", { children: t !== null ? t("docSecret") : "" })]
@@ -2907,20 +3069,34 @@ function mcpWireScalar(text) {
                                                 onClick: () => refresh(true),
                                                 children: t !== null ? t("retry") : ""
                                         })]
-                                }) : null, (0, react_jsx_runtime.jsx)("div", {
-                                        className: m.toolbar,
-                                        children: (0, react_jsx_runtime.jsx)("button", {
-                                                type: "button",
-                                                className: m.add,
-                                                onClick: () => { setDialogError(null); setEditing({ server: null }); },
-                                                children: t !== null ? t("add") : ""
-                                        })
-                                }), loadState.kind === "loading" && servers.length === 0 ? (0, react_jsx_runtime.jsx)("p", { className: m.sub, children: t !== null ? t("loading") : "" }) : null, servers.length === 0 && external.length === 0 && loadState.kind === "ready" ? (0, react_jsx_runtime.jsx)("p", { className: m.sub, children: t !== null ? t("empty") : "" }) : null, (0, react_jsx_runtime.jsxs)("div", {
+                                }) : null,
+                                mcpSubTab === "user" ? (0, react_jsx_runtime.jsxs)(react_jsx_runtime.Fragment, {
+                                        children: [
+                                                (0, react_jsx_runtime.jsx)("div", {
+                                                        className: m.toolbar,
+                                                        children: (0, react_jsx_runtime.jsx)("button", {
+                                                                type: "button",
+                                                                className: m.add,
+                                                                onClick: () => { setDialogError(null); setEditing({ server: null, initialForm: null }); },
+                                                                children: t !== null ? t("add") : ""
+                                                        })
+                                                }),
+                                                loadState.kind === "loading" && servers.length === 0 ? (0, react_jsx_runtime.jsx)("p", { className: m.sub, children: t !== null ? t("loading") : "" }) : null,
+                                                servers.length === 0 && external.length === 0 && loadState.kind === "ready" ? (0, react_jsx_runtime.jsx)("p", { className: m.sub, children: t !== null ? t("empty") : "" }) : null,
+                                                (0, react_jsx_runtime.jsxs)("div", {
+                                                        className: m.cards,
+                                                        children: [...servers.map((server: any) => serverCard(server, false)), ...external.map((server: any) => serverCard(server, true))]
+                                                })
+                                        ]
+                                }) : (0, react_jsx_runtime.jsx)("div", {
                                         className: m.cards,
-                                        children: [...servers.map((server) => serverCard(server, false)), ...external.map((server) => serverCard(server, true))]
-                                }), editing !== null ? (0, react_jsx_runtime.jsx)(McpFormDialog, {
-                                        t: t !== null ? t : (key) => key,
+                                        children: presets.map(presetCard)
+                                }),
+                                editing !== null ? (0, react_jsx_runtime.jsx)(McpFormDialog, {
+                                        t: t !== null ? t : (key: any) => key,
                                         initial: editing.server,
+                                        initialForm: editing.initialForm,
+                                        presets,
                                         onSave: applySave,
                                         onCancel: () => setEditing(null),
                                         busy: dialogBusy,
