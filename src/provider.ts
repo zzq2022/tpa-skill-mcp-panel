@@ -11,8 +11,9 @@
  */
 
 import { readFile } from "node:fs/promises";
-import { dirname, join } from "node:path";
+import { dirname, join, resolve as resolvePath } from "node:path";
 import { homedir } from "node:os";
+import { fileURLToPath } from "node:url";
 import { resolveDshHome } from "@deepseek-ai/dsh-home-paths";
 import chokidar from "chokidar";
 import { buildRoots, collectSkillEntries, parseFrontmatter } from "./skill-files.js";
@@ -60,7 +61,8 @@ export class NestedSkillProvider {
   }
 
   async list(options: any = {}) {
-    const roots = await buildRoots(options.cwd, this.homes());
+    const builtin = this.builtinRoot();
+    const roots = [...(await buildRoots(options.cwd, this.homes())), { path: builtin, source: "builtin", projectRoot: undefined }];
     const entries = await collectSkillEntries(roots);
     const candidates: any[] = [];
     for (const entry of entries) {
@@ -100,10 +102,15 @@ export class NestedSkillProvider {
     };
   }
 
-  /** 被递归 watcher 监视的根（用户级根；项目根随 list() 的 cwd 动态扫描）。 */
+  private builtinRoot(): string {
+    const pkgDir = dirname(fileURLToPath(import.meta.url));
+    return resolvePath(pkgDir, "../skills");
+  }
+
+  /** 被递归 watcher 监视的根（用户级根 + 内置根；项目根随 list() 的 cwd 动态扫描）。 */
   private roots(): string[] {
     const { dshHome, agentsHome } = this.homes();
-    return [join(agentsHome, "skills"), join(dshHome, "skills")];
+    return [join(agentsHome, "skills"), join(dshHome, "skills"), this.builtinRoot()];
   }
 
   private homes() {

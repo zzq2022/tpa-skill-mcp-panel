@@ -1,0 +1,232 @@
+[
+  {
+    "id": "juyuan",
+    "name": "juyuan",
+    "displayName": "聚源智能助手",
+    "category": "finance",
+    "description": "聚源金融数据与分析智能助手 API 服务",
+    "requires": "聚源 Token (${JUYUAN_MCP_TOKEN})",
+    "type": "streamableHttp",
+    "command": "",
+    "args": [],
+    "url": "https://api.gildata.com/mcp-servers/aidata-assistant-srv-api?token=${JUYUAN_MCP_TOKEN}",
+    "headers": {},
+    "env": {},
+    "connectTimeout": 10,
+    "toolTimeout": 60,
+    "enabledTools": [
+      "*"
+    ]
+  },
+  {
+    "id": "caihui_mcp",
+    "name": "caihui_mcp",
+    "displayName": "财汇数据助手",
+    "category": "finance",
+    "description": "财汇资讯金融宏观与行业数据检索服务",
+    "requires": "财汇 API Key (${CAIHUI_MCP_API_KEY})",
+    "type": "streamableHttp",
+    "command": "",
+    "args": [],
+    "url": "https://mcp.finchina.com/finchina-data-mcp-server/mcp",
+    "headers": {
+      "x-api-key": "${CAIHUI_MCP_API_KEY}"
+    },
+    "env": {},
+    "connectTimeout": 15,
+    "toolTimeout": 30,
+    "enabledTools": [
+      "*"
+    ]
+  },
+  {
+    "id": "hexin-ifind-ds-stock-mcp",
+    "name": "hexin-ifind-ds-stock-mcp",
+    "displayName": "同花顺 iFinD 股票",
+    "category": "finance",
+    "description": "A股、港股、美股行情、财务与深度个股研究数据",
+    "requires": "同花顺 iFinD Key (${IFIND_MCP_API_KEY})",
+    "type": "streamableHttp",
+    "command": "",
+    "args": [],
+    "url": "https://api-mcp.51ifind.com:8643/ds-mcp-servers/hexin-ifind-ds-stock-mcp",
+    "headers": {
+      "Authorization": "${IFIND_MCP_API_KEY}"
+    },
+    "env": {},
+    "connectTimeout": 15,
+    "toolTimeout": 30,
+    "enabledTools": [
+      "*"
+    ]
+  },
+  {
+    "id": "hexin-ifind-ds-fund-mcp",
+    "name": "hexin-ifind-ds-fund-mcp",
+    "displayName": "同花顺 iFinD 基金",
+    "category": "finance",
+    "description": "公募基金净值、持仓穿透、经理业绩与评级数据",
+    "requires": "同花顺 iFinD Key (${IFIND_MCP_API_KEY})",
+    "type": "streamableHttp",
+    "command": "",
+    "args": [],
+    "url": "https://api-mcp.51ifind.com:8643/ds-mcp-servers/hexin-ifind-ds-fund-mcp",
+    "headers": {
+      "Authorization": "${IFIND_MCP_API_KEY}"
+    },
+    "env": {},
+    "connectTimeout": 15,
+    "toolTimeout": 30,
+    "enabledTools": [
+      "*"
+    ]
+  },
+  {
+    "id": "hexin-ifind-ds-edb-mcp",
+    "name": "hexin-ifind-ds-edb-mcp",
+    "displayName": "同花顺 iFinD 宏观",
+    "category": "finance",
+    "description": "宏观经济指标库、宏观 EDB、行业高频数据与预测",
+    "requires": "同花顺 iFinD Key (${IFIND_MCP_API_KEY})",
+    "type": "streamableHttp",
+    "command": "",
+    "args": [],
+    "url": "https://api-mcp.51ifind.com:8643/ds-mcp-servers/hexin-ifind-ds-edb-mcp",
+    "headers": {
+      "Authorization": "${IFIND_MCP_API_KEY}"
+    },
+    "env": {},
+    "connectTimeout": 15,
+    "toolTimeout": 30,
+    "enabledTools": [
+      "*"
+    ]
+  },
+  {
+    "id": "hexin-ifind-ds-news-mcp",
+    "name": "hexin-ifind-ds-news-mcp",
+    "displayName": "同花顺 iFinD 新闻",
+    "category": "finance",
+    "description": "金融财经实时快讯、公司公告、投研研报与舆情事件",
+    "requires": "同花顺 iFinD Key (${IFIND_MCP_API_KEY})",
+    "type": "streamableHttp",
+    "command": "",
+    "args": [],
+    "url": "https://api-mcp.51ifind.com:8643/ds-mcp-servers/hexin-ifind-ds-news-mcp",
+    "headers": {
+      "Authorization": "${IFIND_MCP_API_KEY}"
+    },
+    "env": {},
+    "connectTimeout": 15,
+    "toolTimeout": 30,
+    "enabledTools": [
+      "*"
+    ]
+  },
+  {
+    "id": "hexin-ifind-ds-bond-mcp",
+    "name": "hexin-ifind-ds-bond-mcp",
+    "displayName": "同花顺 iFinD 债券",
+    "category": "finance",
+    "description": "国债、信用债、可转债行情收益率曲线与违约预警",
+    "requires": "同花顺 iFinD Key (${IFIND_MCP_API_KEY})",
+    "type": "streamableHttp",
+    "command": "",
+    "args": [],
+    "url": "https://api-mcp.51ifind.com:8643/ds-mcp-servers/hexin-ifind-ds-bond-mcp",
+    "headers": {
+      "Authorization": "${IFIND_MCP_API_KEY}"
+    },
+    "env": {},
+    "connectTimeout": 15,
+    "toolTimeout": 30,
+    "enabledTools": [
+      "*"
+    ]
+  },
+  {
+    "id": "hexin-ifind-ds-global-stock-mcp",
+    "name": "hexin-ifind-ds-global-stock-mcp",
+    "displayName": "同花顺 iFinD 全球股票",
+    "category": "finance",
+    "description": "全球主要股票市场、指数、成分股及跨境联动数据",
+    "requires": "同花顺 iFinD Key (${IFIND_MCP_API_KEY})",
+    "type": "streamableHttp",
+    "command": "",
+    "args": [],
+    "url": "https://api-mcp.51ifind.com:8643/ds-mcp-servers/hexin-ifind-ds-global-stock-mcp",
+    "headers": {
+      "Authorization": "${IFIND_MCP_API_KEY}"
+    },
+    "env": {},
+    "connectTimeout": 15,
+    "toolTimeout": 30,
+    "enabledTools": [
+      "*"
+    ]
+  },
+  {
+    "id": "hexin-ifind-ds-index-mcp",
+    "name": "hexin-ifind-ds-index-mcp",
+    "displayName": "同花顺 iFinD 指数",
+    "category": "finance",
+    "description": "指数基本信息、权重走势、行业分类及指数估值体系",
+    "requires": "同花顺 iFinD Key (${IFIND_MCP_API_KEY})",
+    "type": "streamableHttp",
+    "command": "",
+    "args": [],
+    "url": "https://api-mcp.51ifind.com:8643/ds-mcp-servers/hexin-ifind-ds-index-mcp",
+    "headers": {
+      "Authorization": "${IFIND_MCP_API_KEY}"
+    },
+    "env": {},
+    "connectTimeout": 15,
+    "toolTimeout": 30,
+    "enabledTools": [
+      "*"
+    ]
+  },
+  {
+    "id": "anysearch",
+    "name": "anysearch",
+    "displayName": "AnySearch 联网搜索",
+    "category": "search",
+    "description": "高质量互联网实时聚合搜索与网页内容抽取服务",
+    "requires": "AnySearch API Key (${ANYSEARCH_API_KEY})",
+    "type": "streamableHttp",
+    "command": "",
+    "args": [],
+    "url": "https://api.anysearch.com/mcp",
+    "headers": {
+      "Authorization": "Bearer ${ANYSEARCH_API_KEY}"
+    },
+    "env": {},
+    "connectTimeout": 15,
+    "toolTimeout": 30,
+    "enabledTools": [
+      "*"
+    ]
+  },
+  {
+    "id": "playwright",
+    "name": "playwright",
+    "displayName": "Playwright 浏览器自动化",
+    "category": "browser",
+    "description": "基于 Playwright 的无头浏览器控制、网页截图与交互工具",
+    "requires": "无 (依赖 npx)",
+    "type": "stdio",
+    "command": "npx",
+    "args": [
+      "-y",
+      "@playwright/mcp@0.0.78"
+    ],
+    "url": "",
+    "headers": {},
+    "env": {},
+    "connectTimeout": 15,
+    "toolTimeout": 60,
+    "enabledTools": [
+      "*"
+    ]
+  }
+]

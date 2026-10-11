@@ -44,9 +44,30 @@ export const mcpServerViewSchema = z.object({
   toolCount: z.number().int().nonnegative()
 });
 
+export const mcpPresetViewSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  displayName: z.string(),
+  category: z.string(),
+  description: z.string(),
+  requires: z.string().optional(),
+  type: z.string(),
+  command: z.string().optional(),
+  args: z.array(z.string()).optional(),
+  url: z.string().optional(),
+  headers: z.record(z.string(), z.string()).optional(),
+  env: z.record(z.string(), z.string()).optional(),
+  connectTimeout: z.number().optional(),
+  toolTimeout: z.number().optional(),
+  enabledTools: z.array(z.string()).optional(),
+  configured: z.boolean().default(false),
+  enabled: z.boolean().default(false)
+});
+
 export const mcpListResultSchema = z.object({
   servers: z.array(mcpServerViewSchema),
   externalServers: z.array(mcpServerViewSchema),
+  presets: z.array(mcpPresetViewSchema).default([]),
   patch: z.object({
     path: z.string(),
     ok: z.boolean(),

@@ -73,6 +73,7 @@
   "files": [
     "lib",
     "assets",
+    "skills",
     "README.md",
     "README.en.md",
     "LICENSE",

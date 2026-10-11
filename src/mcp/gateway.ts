@@ -25,6 +25,7 @@ import {
 import { mcpRemovePayloadSchema, mcpSavePayloadSchema, mcpSetEnabledPayloadSchema, mcpTestPayloadSchema } from "./wire.js";
 import { fiberPhaseOf, getLoaderEntry, mcpToolCount, waitForLoaderState } from "./status.js";
 import { probeMcpServer } from "./probe.js";
+import { loadBuiltinMcpPresets } from "./builtin.js";
 
 
 function stripUndefined(value: any): any {
@@ -120,9 +121,22 @@ export class McpManagerGateway extends TypertRemoteService {
         const view = this.decorate(row, false, entry, row.disabled !== true);
         if (view !== undefined) externalServers.push(view);
       }
-      return { servers, externalServers, patch };
+      const builtinPresets = loadBuiltinMcpPresets();
+      const configuredServers = new Map<string, { enabled: boolean }>();
+      for (const s of [...servers, ...externalServers]) {
+        configuredServers.set(s.serverName, { enabled: s.enabled });
+      }
+      const presets = builtinPresets.map((preset) => {
+        const found = configuredServers.get(preset.name);
+        return {
+          ...preset,
+          configured: found !== undefined,
+          enabled: found !== undefined ? found.enabled : false
+        };
+      });
+      return { servers, externalServers, presets, patch };
     } catch (error) {
-      return { servers: [], externalServers: [], patch: { ...patch, error: error instanceof Error ? error.message : String(error) } };
+      return { servers: [], externalServers: [], presets: loadBuiltinMcpPresets().map(p => ({ ...p, configured: false, enabled: false })), patch: { ...patch, error: error instanceof Error ? error.message : String(error) } };
     }
   }
 
