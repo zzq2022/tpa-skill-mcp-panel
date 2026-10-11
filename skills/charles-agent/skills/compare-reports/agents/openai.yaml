@@ -1,0 +1,6 @@
+interface:
+  display_name: "Charles 同业与跨期比较"
+  short_description: "比较公司或期间的财务与经营差异"
+  default_prompt: "Use $compare-reports to compare named companies or periods and return sourced structured results."
+policy:
+  allow_implicit_invocation: false

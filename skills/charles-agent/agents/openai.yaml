@@ -1,0 +1,6 @@
+interface:
+  display_name: "Charles 投研情报官"
+  short_description: "财报、行情、RAG、舆情与五步法投研分析"
+  default_prompt: "使用 $charles-agent 分析目标公司的最新财报，并输出带来源和数据限制的报告。"
+policy:
+  allow_implicit_invocation: true

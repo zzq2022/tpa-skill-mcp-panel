@@ -1,0 +1,6 @@
+interface:
+  display_name: "Charles 舆情与事件分析"
+  short_description: "过滤新闻并分析情绪和事件信号"
+  default_prompt: "Use $sentiment-analysis to analyze news relevance, sentiment, and events for a named subject."
+policy:
+  allow_implicit_invocation: false

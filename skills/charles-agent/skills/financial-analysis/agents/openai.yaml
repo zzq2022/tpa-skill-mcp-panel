@@ -1,0 +1,6 @@
+interface:
+  display_name: "Charles 财务指标分析"
+  short_description: "分析财务指标趋势和行业口径"
+  default_prompt: "Use $financial-analysis to analyze named subjects and periods with sourced metrics."
+policy:
+  allow_implicit_invocation: false
