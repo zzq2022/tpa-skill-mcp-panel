@@ -128,9 +128,40 @@ export class McpManagerGateway extends TypertRemoteService {
         if (view !== undefined) externalServers.push(view);
       }
       const builtinPresets = loadBuiltinMcpPresets();
+      let patchChanged = false;
+      for (const preset of builtinPresets) {
+        let found = managed.find((r) => isBuiltinRow(r) && (r.config?.serverName === preset.name || serverNameFromRowId(r.id) === preset.name));
+        if (found === undefined) {
+          const isHttp = preset.type === "streamable-http" || preset.type === "streamableHttp";
+          found = {
+            id: "panel-builtin-mcp-" + preset.name,
+            name: MCP_PLUGIN_NAME,
+            disabled: false,
+            config: {
+              serverName: preset.name,
+              transport: isHttp ? "streamable-http" : "stdio",
+              url: preset.url,
+              command: preset.command,
+              args: preset.args ?? [],
+              headers: preset.headers ?? {},
+              env: preset.env ?? {},
+              toolCallTimeoutMs: (preset.toolTimeout ? preset.toolTimeout * 1000 : undefined) ?? DEFAULT_TOOL_CALL_TIMEOUT_MS,
+              reconnect: { ...DEFAULT_RECONNECT },
+              failOnStartupError: false,
+              isBuiltin: true
+            }
+          };
+          managed.push(found);
+          patchChanged = true;
+        }
+      }
+      if (patchChanged) {
+        await writeManagedRows(path, managed);
+      }
+
       const presets = builtinPresets.map((preset) => {
         const found = managed.find((r) => isBuiltinRow(r) && (r.config?.serverName === preset.name || serverNameFromRowId(r.id) === preset.name));
-        const enabled = found !== undefined ? found.disabled !== true : false;
+        const enabled = found !== undefined ? found.disabled !== true : true;
         const entry = found && typeof found.id === "string" ? getLoaderEntry(this.C, found.id) : undefined;
         const fiberPhase = entry?.phase ?? (enabled ? "active" : null);
         const toolCount = enabled ? mcpToolCount(this.C, preset.name) : 0;

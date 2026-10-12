@@ -39,8 +39,8 @@ try {
   assert.ok(Array.isArray(listRes.presets), "gateway.list() should return presets array");
   assert.equal(listRes.presets.length, 11, "gateway.list() should return 11 presets");
   assert.equal(listRes.presets[0].configured, true, "Presets are fully configured out-of-the-box");
-  assert.equal(listRes.presets[0].enabled, false, "Presets should default to disabled unless activated");
-  console.log("PASS  Gateway returns all 11 presets with configured=true & enabled=false status");
+  assert.equal(listRes.presets[0].enabled, true, "Presets should default to enabled (running)");
+  console.log("PASS  Gateway returns all 11 presets with configured=true & enabled=true status");
 } finally {
   await rm(dir, { recursive: true, force: true });
 }
