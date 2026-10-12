@@ -45,7 +45,11 @@ function stripUndefined(value: any): any {
 const MANAGED_ROW_IDS = new Set<string>();
 
 export function isBuiltinRow(row: PatchRow): boolean {
-  return (typeof row.id === "string" && row.id.startsWith("panel-builtin-mcp-")) || (row.config as any)?.isBuiltin === true;
+  if (typeof row.id === "string" && row.id.startsWith("panel-builtin-mcp-")) return true;
+  if ((row.config as any)?.isBuiltin === true) return true;
+  const name = (row.config as any)?.serverName ?? (typeof row.id === "string" ? serverNameFromRowId(row.id) : undefined);
+  if (typeof name === "string" && loadBuiltinMcpPresets().some((p) => p.name === name)) return true;
+  return false;
 }
 
 function isManagedRow(row: PatchRow): boolean {
@@ -123,6 +127,7 @@ export class McpManagerGateway extends TypertRemoteService {
       }
       const externalServers: any[] = [];
       for (const row of external) {
+        if (isBuiltinRow(row)) continue;
         const entry = typeof row.id === "string" ? getLoaderEntry(this.C, row.id) : undefined;
         const view = this.decorate(row, false, entry, row.disabled !== true);
         if (view !== undefined) externalServers.push(view);
@@ -192,6 +197,10 @@ export class McpManagerGateway extends TypertRemoteService {
     const input = payload.input;
     const previousName = payload.previousServerName ?? input.serverName;
     const { managed, external } = await this.readRows();
+
+    if (loadBuiltinMcpPresets().some((p) => p.name === input.serverName)) {
+      throw new Error('serverName "' + input.serverName + '" 与内置 MCP 服务重名，请使用其他名称');
+    }
 
     for (const row of external) {
       const name = row.config?.serverName;
