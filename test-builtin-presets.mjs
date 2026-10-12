@@ -19,7 +19,7 @@ const ifindStock = presets.find((p) => p.name === "hexin-ifind-ds-stock-mcp");
 assert.ok(ifindStock, "Should contain hexin-ifind-ds-stock-mcp");
 assert.equal(ifindStock.category, "finance");
 assert.equal(ifindStock.type, "streamableHttp");
-assert.ok(ifindStock.requires.includes("IFIND_MCP_API_KEY"));
+assert.ok(ifindStock.requires.includes("iFinD") || ifindStock.requires.includes("IFIND"));
 
 const playwright = presets.find((p) => p.name === "playwright");
 assert.ok(playwright, "Should contain playwright");

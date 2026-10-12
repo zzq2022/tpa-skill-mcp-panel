@@ -5,11 +5,11 @@
     "displayName": "聚源智能助手",
     "category": "finance",
     "description": "聚源金融数据与分析智能助手 API 服务",
-    "requires": "聚源 Token (${JUYUAN_MCP_TOKEN})",
+    "requires": "凭证已内置（聚源金融 Token）",
     "type": "streamableHttp",
     "command": "",
     "args": [],
-    "url": "https://api.gildata.com/mcp-servers/aidata-assistant-srv-api?token=${JUYUAN_MCP_TOKEN}",
+    "url": "https://api.gildata.com/mcp-servers/aidata-assistant-srv-api?token=in3ga4hF3mOwlIvmknOskDy3bto3xS3f",
     "headers": {},
     "env": {},
     "connectTimeout": 10,
@@ -24,13 +24,13 @@
     "displayName": "财汇数据助手",
     "category": "finance",
     "description": "财汇资讯金融宏观与行业数据检索服务",
-    "requires": "财汇 API Key (${CAIHUI_MCP_API_KEY})",
+    "requires": "凭证已内置（财汇 API Key）",
     "type": "streamableHttp",
     "command": "",
     "args": [],
     "url": "https://mcp.finchina.com/finchina-data-mcp-server/mcp",
     "headers": {
-      "x-api-key": "${CAIHUI_MCP_API_KEY}"
+      "x-api-key": "ak_4571f4d7da4d485eb35a2670b34a7d61"
     },
     "env": {},
     "connectTimeout": 15,
@@ -45,13 +45,13 @@
     "displayName": "同花顺 iFinD 股票",
     "category": "finance",
     "description": "A股、港股、美股行情、财务与深度个股研究数据",
-    "requires": "同花顺 iFinD Key (${IFIND_MCP_API_KEY})",
+    "requires": "凭证已内置（同花顺 iFinD Key）",
     "type": "streamableHttp",
     "command": "",
     "args": [],
     "url": "https://api-mcp.51ifind.com:8643/ds-mcp-servers/hexin-ifind-ds-stock-mcp",
     "headers": {
-      "Authorization": "${IFIND_MCP_API_KEY}"
+      "Authorization": "eyJraWQiOiJtY3AtYXBpIiwidWlkIjoiODYyMDg1ODM1IiwiYWxnIjoiUlNBLU9BRVAtMjU2IiwiZW5jIjoiQTI1NkdDTSJ9.V3_RyxRpf3ZqDlKoy9TjyglvEKHdA3kO514siQ5IDeCrlSZOPtfzqeme7YKQqj9jrm4qPwoBQABCSFfF357YVBahRMJ7DriRh9tL8n-x0NCBKiTXkcLMfP21poszZBXYU8cl05FC2vqaXYuM21ssKD1uew0YizuZrR4oVeB1Om6dLcuSZPiz-uRB9V21bzUb137Cfsn79aCJ8nXxbXVkuHspdNabAw5qtZUgjcQL3-U4Xpuc78WTZqSvXQWJTVPc_J-sX432_qO2g22CrO0cbnAKSeFeDWF5eZJyhqriBeUxwaauGsa3jGPJQhG-Fpedk00muyXI0QVnsENLyZ-Qlw.IxjdSSkf8x4jxzd4.mNJ8X0u1L9KQNBqCrV7lubsfH4lzaVHp9uogPMF7PjXWouOVDBiJV10mH-ePymBPykyVAjP3wqUciAfqrQJaChs3sRKvaO6Sx0g1B6jxxNnPu4Ny2rAZpdUDdN8D8UzF_RMU154cRd1_NQGYO5CelGOOTsB8-Chp1FHCUGx-Igktok9QXGIq_lPM4RK4CSjoH4UjN7I2jE-Ed1fzJUwitpUz29ei9d7qk90csgCaJiauAUpfIGuFLoX8bROywO8BnH-TJxqlED32743AWy4hWn7r7U8MKIueWqKPEccXQzs3CQ_4tKeTnfBorLy_2UIy2OP2fXwZ1Jl4bQ_As6m-OJOvAzaTxeBcxAIVZtplImh3sew8TqIrGQ0i6Y-t9ruJ6oBJWOnKMWhT85j67ODFkiJQ-rK3G1yfNvu8EN85v-MyqJVjDPw6fK8UnjTrTbwpQQID0Q.bKsTjm5LyraeNnjW47AwFQ"
     },
     "env": {},
     "connectTimeout": 15,
@@ -66,13 +66,13 @@
     "displayName": "同花顺 iFinD 基金",
     "category": "finance",
     "description": "公募基金净值、持仓穿透、经理业绩与评级数据",
-    "requires": "同花顺 iFinD Key (${IFIND_MCP_API_KEY})",
+    "requires": "凭证已内置（同花顺 iFinD Key）",
     "type": "streamableHttp",
     "command": "",
     "args": [],
     "url": "https://api-mcp.51ifind.com:8643/ds-mcp-servers/hexin-ifind-ds-fund-mcp",
     "headers": {
-      "Authorization": "${IFIND_MCP_API_KEY}"
+      "Authorization": "eyJraWQiOiJtY3AtYXBpIiwidWlkIjoiODYyMDg1ODM1IiwiYWxnIjoiUlNBLU9BRVAtMjU2IiwiZW5jIjoiQTI1NkdDTSJ9.V3_RyxRpf3ZqDlKoy9TjyglvEKHdA3kO514siQ5IDeCrlSZOPtfzqeme7YKQqj9jrm4qPwoBQABCSFfF357YVBahRMJ7DriRh9tL8n-x0NCBKiTXkcLMfP21poszZBXYU8cl05FC2vqaXYuM21ssKD1uew0YizuZrR4oVeB1Om6dLcuSZPiz-uRB9V21bzUb137Cfsn79aCJ8nXxbXVkuHspdNabAw5qtZUgjcQL3-U4Xpuc78WTZqSvXQWJTVPc_J-sX432_qO2g22CrO0cbnAKSeFeDWF5eZJyhqriBeUxwaauGsa3jGPJQhG-Fpedk00muyXI0QVnsENLyZ-Qlw.IxjdSSkf8x4jxzd4.mNJ8X0u1L9KQNBqCrV7lubsfH4lzaVHp9uogPMF7PjXWouOVDBiJV10mH-ePymBPykyVAjP3wqUciAfqrQJaChs3sRKvaO6Sx0g1B6jxxNnPu4Ny2rAZpdUDdN8D8UzF_RMU154cRd1_NQGYO5CelGOOTsB8-Chp1FHCUGx-Igktok9QXGIq_lPM4RK4CSjoH4UjN7I2jE-Ed1fzJUwitpUz29ei9d7qk90csgCaJiauAUpfIGuFLoX8bROywO8BnH-TJxqlED32743AWy4hWn7r7U8MKIueWqKPEccXQzs3CQ_4tKeTnfBorLy_2UIy2OP2fXwZ1Jl4bQ_As6m-OJOvAzaTxeBcxAIVZtplImh3sew8TqIrGQ0i6Y-t9ruJ6oBJWOnKMWhT85j67ODFkiJQ-rK3G1yfNvu8EN85v-MyqJVjDPw6fK8UnjTrTbwpQQID0Q.bKsTjm5LyraeNnjW47AwFQ"
     },
     "env": {},
     "connectTimeout": 15,
@@ -87,13 +87,13 @@
     "displayName": "同花顺 iFinD 宏观",
     "category": "finance",
     "description": "宏观经济指标库、宏观 EDB、行业高频数据与预测",
-    "requires": "同花顺 iFinD Key (${IFIND_MCP_API_KEY})",
+    "requires": "凭证已内置（同花顺 iFinD Key）",
     "type": "streamableHttp",
     "command": "",
     "args": [],
     "url": "https://api-mcp.51ifind.com:8643/ds-mcp-servers/hexin-ifind-ds-edb-mcp",
     "headers": {
-      "Authorization": "${IFIND_MCP_API_KEY}"
+      "Authorization": "eyJraWQiOiJtY3AtYXBpIiwidWlkIjoiODYyMDg1ODM1IiwiYWxnIjoiUlNBLU9BRVAtMjU2IiwiZW5jIjoiQTI1NkdDTSJ9.V3_RyxRpf3ZqDlKoy9TjyglvEKHdA3kO514siQ5IDeCrlSZOPtfzqeme7YKQqj9jrm4qPwoBQABCSFfF357YVBahRMJ7DriRh9tL8n-x0NCBKiTXkcLMfP21poszZBXYU8cl05FC2vqaXYuM21ssKD1uew0YizuZrR4oVeB1Om6dLcuSZPiz-uRB9V21bzUb137Cfsn79aCJ8nXxbXVkuHspdNabAw5qtZUgjcQL3-U4Xpuc78WTZqSvXQWJTVPc_J-sX432_qO2g22CrO0cbnAKSeFeDWF5eZJyhqriBeUxwaauGsa3jGPJQhG-Fpedk00muyXI0QVnsENLyZ-Qlw.IxjdSSkf8x4jxzd4.mNJ8X0u1L9KQNBqCrV7lubsfH4lzaVHp9uogPMF7PjXWouOVDBiJV10mH-ePymBPykyVAjP3wqUciAfqrQJaChs3sRKvaO6Sx0g1B6jxxNnPu4Ny2rAZpdUDdN8D8UzF_RMU154cRd1_NQGYO5CelGOOTsB8-Chp1FHCUGx-Igktok9QXGIq_lPM4RK4CSjoH4UjN7I2jE-Ed1fzJUwitpUz29ei9d7qk90csgCaJiauAUpfIGuFLoX8bROywO8BnH-TJxqlED32743AWy4hWn7r7U8MKIueWqKPEccXQzs3CQ_4tKeTnfBorLy_2UIy2OP2fXwZ1Jl4bQ_As6m-OJOvAzaTxeBcxAIVZtplImh3sew8TqIrGQ0i6Y-t9ruJ6oBJWOnKMWhT85j67ODFkiJQ-rK3G1yfNvu8EN85v-MyqJVjDPw6fK8UnjTrTbwpQQID0Q.bKsTjm5LyraeNnjW47AwFQ"
     },
     "env": {},
     "connectTimeout": 15,
@@ -108,13 +108,13 @@
     "displayName": "同花顺 iFinD 新闻",
     "category": "finance",
     "description": "金融财经实时快讯、公司公告、投研研报与舆情事件",
-    "requires": "同花顺 iFinD Key (${IFIND_MCP_API_KEY})",
+    "requires": "凭证已内置（同花顺 iFinD Key）",
     "type": "streamableHttp",
     "command": "",
     "args": [],
     "url": "https://api-mcp.51ifind.com:8643/ds-mcp-servers/hexin-ifind-ds-news-mcp",
     "headers": {
-      "Authorization": "${IFIND_MCP_API_KEY}"
+      "Authorization": "eyJraWQiOiJtY3AtYXBpIiwidWlkIjoiODYyMDg1ODM1IiwiYWxnIjoiUlNBLU9BRVAtMjU2IiwiZW5jIjoiQTI1NkdDTSJ9.V3_RyxRpf3ZqDlKoy9TjyglvEKHdA3kO514siQ5IDeCrlSZOPtfzqeme7YKQqj9jrm4qPwoBQABCSFfF357YVBahRMJ7DriRh9tL8n-x0NCBKiTXkcLMfP21poszZBXYU8cl05FC2vqaXYuM21ssKD1uew0YizuZrR4oVeB1Om6dLcuSZPiz-uRB9V21bzUb137Cfsn79aCJ8nXxbXVkuHspdNabAw5qtZUgjcQL3-U4Xpuc78WTZqSvXQWJTVPc_J-sX432_qO2g22CrO0cbnAKSeFeDWF5eZJyhqriBeUxwaauGsa3jGPJQhG-Fpedk00muyXI0QVnsENLyZ-Qlw.IxjdSSkf8x4jxzd4.mNJ8X0u1L9KQNBqCrV7lubsfH4lzaVHp9uogPMF7PjXWouOVDBiJV10mH-ePymBPykyVAjP3wqUciAfqrQJaChs3sRKvaO6Sx0g1B6jxxNnPu4Ny2rAZpdUDdN8D8UzF_RMU154cRd1_NQGYO5CelGOOTsB8-Chp1FHCUGx-Igktok9QXGIq_lPM4RK4CSjoH4UjN7I2jE-Ed1fzJUwitpUz29ei9d7qk90csgCaJiauAUpfIGuFLoX8bROywO8BnH-TJxqlED32743AWy4hWn7r7U8MKIueWqKPEccXQzs3CQ_4tKeTnfBorLy_2UIy2OP2fXwZ1Jl4bQ_As6m-OJOvAzaTxeBcxAIVZtplImh3sew8TqIrGQ0i6Y-t9ruJ6oBJWOnKMWhT85j67ODFkiJQ-rK3G1yfNvu8EN85v-MyqJVjDPw6fK8UnjTrTbwpQQID0Q.bKsTjm5LyraeNnjW47AwFQ"
     },
     "env": {},
     "connectTimeout": 15,
@@ -129,13 +129,13 @@
     "displayName": "同花顺 iFinD 债券",
     "category": "finance",
     "description": "国债、信用债、可转债行情收益率曲线与违约预警",
-    "requires": "同花顺 iFinD Key (${IFIND_MCP_API_KEY})",
+    "requires": "凭证已内置（同花顺 iFinD Key）",
     "type": "streamableHttp",
     "command": "",
     "args": [],
     "url": "https://api-mcp.51ifind.com:8643/ds-mcp-servers/hexin-ifind-ds-bond-mcp",
     "headers": {
-      "Authorization": "${IFIND_MCP_API_KEY}"
+      "Authorization": "eyJraWQiOiJtY3AtYXBpIiwidWlkIjoiODYyMDg1ODM1IiwiYWxnIjoiUlNBLU9BRVAtMjU2IiwiZW5jIjoiQTI1NkdDTSJ9.V3_RyxRpf3ZqDlKoy9TjyglvEKHdA3kO514siQ5IDeCrlSZOPtfzqeme7YKQqj9jrm4qPwoBQABCSFfF357YVBahRMJ7DriRh9tL8n-x0NCBKiTXkcLMfP21poszZBXYU8cl05FC2vqaXYuM21ssKD1uew0YizuZrR4oVeB1Om6dLcuSZPiz-uRB9V21bzUb137Cfsn79aCJ8nXxbXVkuHspdNabAw5qtZUgjcQL3-U4Xpuc78WTZqSvXQWJTVPc_J-sX432_qO2g22CrO0cbnAKSeFeDWF5eZJyhqriBeUxwaauGsa3jGPJQhG-Fpedk00muyXI0QVnsENLyZ-Qlw.IxjdSSkf8x4jxzd4.mNJ8X0u1L9KQNBqCrV7lubsfH4lzaVHp9uogPMF7PjXWouOVDBiJV10mH-ePymBPykyVAjP3wqUciAfqrQJaChs3sRKvaO6Sx0g1B6jxxNnPu4Ny2rAZpdUDdN8D8UzF_RMU154cRd1_NQGYO5CelGOOTsB8-Chp1FHCUGx-Igktok9QXGIq_lPM4RK4CSjoH4UjN7I2jE-Ed1fzJUwitpUz29ei9d7qk90csgCaJiauAUpfIGuFLoX8bROywO8BnH-TJxqlED32743AWy4hWn7r7U8MKIueWqKPEccXQzs3CQ_4tKeTnfBorLy_2UIy2OP2fXwZ1Jl4bQ_As6m-OJOvAzaTxeBcxAIVZtplImh3sew8TqIrGQ0i6Y-t9ruJ6oBJWOnKMWhT85j67ODFkiJQ-rK3G1yfNvu8EN85v-MyqJVjDPw6fK8UnjTrTbwpQQID0Q.bKsTjm5LyraeNnjW47AwFQ"
     },
     "env": {},
     "connectTimeout": 15,
@@ -150,13 +150,13 @@
     "displayName": "同花顺 iFinD 全球股票",
     "category": "finance",
     "description": "全球主要股票市场、指数、成分股及跨境联动数据",
-    "requires": "同花顺 iFinD Key (${IFIND_MCP_API_KEY})",
+    "requires": "凭证已内置（同花顺 iFinD Key）",
     "type": "streamableHttp",
     "command": "",
     "args": [],
     "url": "https://api-mcp.51ifind.com:8643/ds-mcp-servers/hexin-ifind-ds-global-stock-mcp",
     "headers": {
-      "Authorization": "${IFIND_MCP_API_KEY}"
+      "Authorization": "eyJraWQiOiJtY3AtYXBpIiwidWlkIjoiODYyMDg1ODM1IiwiYWxnIjoiUlNBLU9BRVAtMjU2IiwiZW5jIjoiQTI1NkdDTSJ9.V3_RyxRpf3ZqDlKoy9TjyglvEKHdA3kO514siQ5IDeCrlSZOPtfzqeme7YKQqj9jrm4qPwoBQABCSFfF357YVBahRMJ7DriRh9tL8n-x0NCBKiTXkcLMfP21poszZBXYU8cl05FC2vqaXYuM21ssKD1uew0YizuZrR4oVeB1Om6dLcuSZPiz-uRB9V21bzUb137Cfsn79aCJ8nXxbXVkuHspdNabAw5qtZUgjcQL3-U4Xpuc78WTZqSvXQWJTVPc_J-sX432_qO2g22CrO0cbnAKSeFeDWF5eZJyhqriBeUxwaauGsa3jGPJQhG-Fpedk00muyXI0QVnsENLyZ-Qlw.IxjdSSkf8x4jxzd4.mNJ8X0u1L9KQNBqCrV7lubsfH4lzaVHp9uogPMF7PjXWouOVDBiJV10mH-ePymBPykyVAjP3wqUciAfqrQJaChs3sRKvaO6Sx0g1B6jxxNnPu4Ny2rAZpdUDdN8D8UzF_RMU154cRd1_NQGYO5CelGOOTsB8-Chp1FHCUGx-Igktok9QXGIq_lPM4RK4CSjoH4UjN7I2jE-Ed1fzJUwitpUz29ei9d7qk90csgCaJiauAUpfIGuFLoX8bROywO8BnH-TJxqlED32743AWy4hWn7r7U8MKIueWqKPEccXQzs3CQ_4tKeTnfBorLy_2UIy2OP2fXwZ1Jl4bQ_As6m-OJOvAzaTxeBcxAIVZtplImh3sew8TqIrGQ0i6Y-t9ruJ6oBJWOnKMWhT85j67ODFkiJQ-rK3G1yfNvu8EN85v-MyqJVjDPw6fK8UnjTrTbwpQQID0Q.bKsTjm5LyraeNnjW47AwFQ"
     },
     "env": {},
     "connectTimeout": 15,
@@ -171,13 +171,13 @@
     "displayName": "同花顺 iFinD 指数",
     "category": "finance",
     "description": "指数基本信息、权重走势、行业分类及指数估值体系",
-    "requires": "同花顺 iFinD Key (${IFIND_MCP_API_KEY})",
+    "requires": "凭证已内置（同花顺 iFinD Key）",
     "type": "streamableHttp",
     "command": "",
     "args": [],
     "url": "https://api-mcp.51ifind.com:8643/ds-mcp-servers/hexin-ifind-ds-index-mcp",
     "headers": {
-      "Authorization": "${IFIND_MCP_API_KEY}"
+      "Authorization": "eyJraWQiOiJtY3AtYXBpIiwidWlkIjoiODYyMDg1ODM1IiwiYWxnIjoiUlNBLU9BRVAtMjU2IiwiZW5jIjoiQTI1NkdDTSJ9.V3_RyxRpf3ZqDlKoy9TjyglvEKHdA3kO514siQ5IDeCrlSZOPtfzqeme7YKQqj9jrm4qPwoBQABCSFfF357YVBahRMJ7DriRh9tL8n-x0NCBKiTXkcLMfP21poszZBXYU8cl05FC2vqaXYuM21ssKD1uew0YizuZrR4oVeB1Om6dLcuSZPiz-uRB9V21bzUb137Cfsn79aCJ8nXxbXVkuHspdNabAw5qtZUgjcQL3-U4Xpuc78WTZqSvXQWJTVPc_J-sX432_qO2g22CrO0cbnAKSeFeDWF5eZJyhqriBeUxwaauGsa3jGPJQhG-Fpedk00muyXI0QVnsENLyZ-Qlw.IxjdSSkf8x4jxzd4.mNJ8X0u1L9KQNBqCrV7lubsfH4lzaVHp9uogPMF7PjXWouOVDBiJV10mH-ePymBPykyVAjP3wqUciAfqrQJaChs3sRKvaO6Sx0g1B6jxxNnPu4Ny2rAZpdUDdN8D8UzF_RMU154cRd1_NQGYO5CelGOOTsB8-Chp1FHCUGx-Igktok9QXGIq_lPM4RK4CSjoH4UjN7I2jE-Ed1fzJUwitpUz29ei9d7qk90csgCaJiauAUpfIGuFLoX8bROywO8BnH-TJxqlED32743AWy4hWn7r7U8MKIueWqKPEccXQzs3CQ_4tKeTnfBorLy_2UIy2OP2fXwZ1Jl4bQ_As6m-OJOvAzaTxeBcxAIVZtplImh3sew8TqIrGQ0i6Y-t9ruJ6oBJWOnKMWhT85j67ODFkiJQ-rK3G1yfNvu8EN85v-MyqJVjDPw6fK8UnjTrTbwpQQID0Q.bKsTjm5LyraeNnjW47AwFQ"
     },
     "env": {},
     "connectTimeout": 15,
@@ -192,13 +192,13 @@
     "displayName": "AnySearch 联网搜索",
     "category": "search",
     "description": "高质量互联网实时聚合搜索与网页内容抽取服务",
-    "requires": "AnySearch API Key (${ANYSEARCH_API_KEY})",
+    "requires": "凭证已内置（AnySearch API Key）",
     "type": "streamableHttp",
     "command": "",
     "args": [],
     "url": "https://api.anysearch.com/mcp",
     "headers": {
-      "Authorization": "Bearer ${ANYSEARCH_API_KEY}"
+      "Authorization": "Bearer as_sk_0e0ce195a1ee5ea7b07b0d226ed81547"
     },
     "env": {},
     "connectTimeout": 15,
@@ -213,7 +213,7 @@
     "displayName": "Playwright 浏览器自动化",
     "category": "browser",
     "description": "基于 Playwright 的无头浏览器控制、网页截图与交互工具",
-    "requires": "无 (依赖 npx)",
+    "requires": "无需凭证（本地自动化）",
     "type": "stdio",
     "command": "npx",
     "args": [
