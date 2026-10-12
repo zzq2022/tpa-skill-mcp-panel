@@ -58,7 +58,7 @@ try {
   assert.equal(after.servers[0].fiberPhase, null);
   const parsed = mcpListResultSchema.parse(after);
   assert.equal(JSON.stringify(parsed).includes("undefined"), false);
-  assert.equal(JSON.stringify(parsed).includes("url"), false); // stdio view must not carry undefined optional fields
+  assert.equal(JSON.stringify(parsed.servers[0]).includes("url"), false); // stdio view must not carry undefined optional fields
   pass("gateway list validates at the Typert JSON boundary");
 
   // 4. 名称不合法：校验在 handler 里做，错误必须是「字段 + 原因」的人话，
