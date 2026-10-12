@@ -1548,7 +1548,7 @@ function SkillsSection(props) {
 			const knownPaths = (Array.isArray(wsOptions) ? wsOptions : []).map((workspace) => workspace.path);
 			const scopeKeys = ["global", ...knownPaths.filter((path) => path !== "global")];
 			if (scopeFilter !== "global" && !scopeKeys.includes(scopeFilter)) scopeKeys.push(scopeFilter);
-			const isBuiltinSkill = (skill: any) => skill.pluginProvided === true || skill.source === "bundled" || skill.source === "runtime";
+			const isBuiltinSkill = (skill: any) => skill.pluginProvided === true || skill.source === "bundled" || skill.source === "runtime" || skill.source === "builtin";
 			const mySkillsTotal = skills.filter((s: any) => !isBuiltinSkill(s));
 			const builtinSkillsTotal = skills.filter(isBuiltinSkill);
 			const scopedAll = mySkillsTotal.filter((skill: any) => scopeOf(skill) === scopeFilter);

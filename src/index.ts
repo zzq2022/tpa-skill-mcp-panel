@@ -411,10 +411,8 @@ export class SkillsViewerGateway extends TypertRemoteService {
       roots.push({ path, source, projectRoot });
     };
     push(join(dshHome, "skills"), "user-dsh", undefined);
-    push(join(agentsHome, "skills"), "user-agents", undefined);
     for (const workspace of (await this.workspaces()).workspaces) {
       push(join(workspace.path, ".dsh", "skills"), "project-dsh", workspace.path);
-      push(join(workspace.path, ".agents", "skills"), "project-agents", workspace.path);
     }
     return roots;
   }
@@ -834,7 +832,7 @@ export class SkillsViewerGateway extends TypertRemoteService {
     const { dshHome, agentsHome } = this.homes();
     const fromProject = rawFrom === null || rawFrom === undefined ? null : await normalizeWorkspace(rawFrom);
     const fromRoots = fromProject === null
-      ? [{ path: join(dshHome, "skills"), source: "user-dsh" }, { path: join(agentsHome, "skills"), source: "user-agents" }]
+      ? [{ path: join(dshHome, "skills"), source: "user-dsh" }]
       : [{ path: workspaceSkillRoot(fromProject), source: "project-dsh", projectRoot: fromProject }];
 
     const byName = new Map();
