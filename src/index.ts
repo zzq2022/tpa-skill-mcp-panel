@@ -526,6 +526,8 @@ export class SkillsViewerGateway extends TypertRemoteService {
     const seen = new Set();
     const seenKey = (name, scopePath) => name + "\u0000" + (scopePath ?? "global");
     for (const skill of listed) {
+      if (skill.source === "user-agents" || skill.source === "project-agents") continue;
+      if (typeof skill.path === "string" && (this.isWithin(this.homes().agentsHome, skill.path) || skill.path.includes(".agents"))) continue;
       // 工作区文件技能由下面的文件扫描兜底；注册表行只反映当前会话的
       // 项目视图。
       if (this.workspaceOfPath(skill.path, roots) !== undefined) continue;
