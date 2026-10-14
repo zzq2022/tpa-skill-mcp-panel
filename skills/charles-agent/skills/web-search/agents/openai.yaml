@@ -1,6 +1,0 @@
-interface:
-  display_name: "Charles 市场搜索"
-  short_description: "搜索新闻、政策和市场一致预期"
-  default_prompt: "Use $web-search to search a current question and return source URLs."
-policy:
-  allow_implicit_invocation: false

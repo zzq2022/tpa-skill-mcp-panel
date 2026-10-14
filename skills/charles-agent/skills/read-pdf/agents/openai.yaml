@@ -1,6 +1,0 @@
-interface:
-  display_name: "Charles 财报文档检索"
-  short_description: "从本地年报和研报中检索可定位证据"
-  default_prompt: "Use $read-pdf to retrieve a named report question with file, page, and excerpt citations."
-policy:
-  allow_implicit_invocation: false

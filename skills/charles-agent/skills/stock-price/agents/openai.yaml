@@ -1,6 +1,0 @@
-interface:
-  display_name: "Charles 行情数据"
-  short_description: "获取指定标的的行情和 K 线数据"
-  default_prompt: "Use $stock-price to fetch quote and K-line data for a named symbol, period, and count."
-policy:
-  allow_implicit_invocation: false

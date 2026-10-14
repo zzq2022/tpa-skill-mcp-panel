@@ -40,8 +40,13 @@ try {
   const candidates = await provider.list({});
 
   const names = candidates.map((c) => c.name).sort();
-  assert.deepEqual(names, ["grilling", "lark-approval", "model-locked"], "只收深度>=2 且启用的嵌套技能");
-  pass("list(): 深度>=2 收集，深度1/停用/扁平/单文件被排除");
+  assert.deepEqual(names, ["corporate-ppt", "grilling", "image-extract", "lark-approval", "model-locked"], "内置技能与深度>=2 嵌套技能均被收集");
+  pass("list(): 内置技能全量收录 + 用户目录深度>=2 嵌套收集，用户深度1/停用/扁平被排除");
+
+  const ppt = candidates.find((c) => c.name === "corporate-ppt");
+  assert.equal(ppt.provider, "nested");
+  assert.equal(ppt.source, "builtin");
+  pass("list(): 内置技能候选字段（provider: nested, source: builtin）");
 
   const approval = candidates.find((c) => c.name === "lark-approval");
   assert.equal(approval.rank, 300);

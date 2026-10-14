@@ -1,6 +1,0 @@
-interface:
-  display_name: "Charles 研究报告生成"
-  short_description: "进行五步法链式推理并组装 Markdown 和 HTML 研报"
-  default_prompt: "Use $write-report to conduct five-step reasoning and assemble a final research report from artifacts."
-policy:
-  allow_implicit_invocation: false
