@@ -311,10 +311,7 @@ const cssSessionCaps = ".SKV_capModalOverlay{position:fixed;inset:0;background:c
 			skillCountLabel: "已选",
 			selectNone: "取消全选",
 			categoryQuickAdd: "按分类快速添加",
-			categoryQuickAddHint: "点击按顶层目录批量勾选/取消",
-			checkUpdateAvailable: "发现新版本 v",
-			checkUpdateCurrent: "（当前 v",
-			checkUpdateHint: "）。可在终端运行 dsh-panel update 更新"
+			categoryQuickAddHint: "点击按顶层目录批量勾选/取消"
 		};
 
 		const en = {
@@ -403,10 +400,7 @@ const cssSessionCaps = ".SKV_capModalOverlay{position:fixed;inset:0;background:c
 			skillCountLabel: "Selected",
 			categoryQuickAdd: "Quick add by category",
 			categoryQuickAddHint: "Click to select/deselect all skills in a category",
-			selectNone: "Select none",
-			checkUpdateAvailable: "Update available: v",
-			checkUpdateCurrent: " (current v",
-			checkUpdateHint: "). Run dsh-panel update in a terminal to install it"
+			selectNone: "Select none"
 		};
 
 		// ── 远程贡献 ─────────────────────────────────────────────────────────
@@ -472,15 +466,6 @@ const cssSessionCaps = ".SKV_capModalOverlay{position:fixed;inset:0;background:c
 						{ name: "payload", wire: "payload", source: "json", codec: codec("dsh-skill-mcp-panel#DeleteGroupPayload") }
 					],
 					result: codec("dsh-skill-mcp-panel#GroupsResult")
-				},
-				{
-					id: "dsh-skill-mcp-panel#skillsViewer/checkUpdate",
-					service: "skillsViewer",
-					namespace: "skillsViewer",
-					method: "checkUpdate",
-					invocation: { kind: "direct" },
-					parameters: [],
-					result: codec("dsh-skill-mcp-panel#CheckUpdateResult")
 				},
 				{
 					id: "dsh-skill-mcp-panel#skillsViewer/migrate",
@@ -1100,7 +1085,7 @@ const cssSessionCaps = ".SKV_capModalOverlay{position:fixed;inset:0;background:c
 		}
 
 function SkillsSection(props) {
-			const { t, currentSessionId, subscribeSession, useSessions, listSkills, loadContent, setSkillEnabled, removeSkill, addSkill, listWorkspaces, batchMigrateSkill, listGroups, saveGroupSkill, deleteGroupSkill, checkUpdateRemote } = props;
+			const { t, currentSessionId, subscribeSession, useSessions, listSkills, loadContent, setSkillEnabled, removeSkill, addSkill, listWorkspaces, batchMigrateSkill, listGroups, saveGroupSkill, deleteGroupSkill } = props;
 			// 当前会话 id，仅用于会话级项目作用域与「随会话刷新列表」，
 			// 不再门控任何 UI：技能页在没有会话时同样正常显示（服务端回退全局注册表）。
 			// 宿主客户端以「主视图引用计数」定义当前会话，判据是
@@ -1155,7 +1140,6 @@ function SkillsSection(props) {
 			const [groupFilter, setGroupFilter] = react.useState("all");
 			const [groupEditor, setGroupEditor] = react.useState(null);
 			const [bulkGroup, setBulkGroup] = react.useState(null);
-			const [updateBanner, setUpdateBanner] = react.useState(null);
 			const [confirmKey, setConfirmKey] = react.useState(null);
 			const [addMenuOpen, setAddMenuOpen] = react.useState(false);
 			const inflight = react.useRef(new Set());
@@ -1364,21 +1348,6 @@ function SkillsSection(props) {
 				});
 			};
 
-			// 进入页面时后台静默检查更新；仅在有新版本时提示，网络失败不打扰。
-			react.useEffect(() => {
-				let current = true;
-				Promise.resolve().then(() => checkUpdateRemote()).then((snapshot) => {
-					if (!current) return;
-					const currentV = snapshot !== null && typeof snapshot === "object" && typeof snapshot.current === "string" ? snapshot.current : "";
-					const latest = snapshot !== null && typeof snapshot === "object" && typeof snapshot.latest === "string" ? snapshot.latest : null;
-					if (latest !== null && snapshot.updateAvailable === true) setUpdateBanner(t("checkUpdateAvailable") + latest + t("checkUpdateCurrent") + currentV + t("checkUpdateHint"));
-				}, () => {
-					// 网络不可达或超时：静默忽略
-				});
-				return () => {
-					current = false;
-				};
-			}, [checkUpdateRemote]);
 
 			// 分组：打开编辑器（新建分组）。
 			const openGroupEditor = () => {
@@ -1801,22 +1770,6 @@ function SkillsSection(props) {
 					className: c.dropHint,
 					children: t("addDragHint")
 				}) : null,
-				updateBanner !== null ? (0, react_jsx_runtime.jsxs)("div", {
-						className: c.notice,
-						"data-kind": "info",
-						role: "status",
-						children: [(0, react_jsx_runtime.jsx)("span", {
-							className: c.noticeText,
-							children: updateBanner
-						}), (0, react_jsx_runtime.jsx)("button", {
-							type: "button",
-							className: c.noticeButton,
-							onClick: () => {
-								setUpdateBanner(null);
-							},
-							children: t("addDismiss")
-						})]
-					}) : null,
 						(0, react_jsx_runtime.jsxs)("div", {
 							className: c.subTabs,
 							style: { marginBottom: "6px" },
@@ -2281,9 +2234,6 @@ migrator !== null ? (0, react_jsx_runtime.jsx)(MigrateDialog, {
                         toolCount: "{count} 个工具",
                         advanced: "高级设置",
                         currentVersion: "dsh-skill-mcp-panel",
-                        checkUpdateAvailable: "发现新版本 v",
-                        checkUpdateCurrent: "（当前 v",
-                        checkUpdateHint: "）。可在终端运行 dsh-panel update 更新",
                         tabMyServers: "我的 MCP",
                         tabPresets: "内置 MCP",
                         builtinMcpNote: "内置 MCP 服务已集成开箱即用配置与预置凭证，可直接原地一键启停，不可删除。",
@@ -2372,9 +2322,6 @@ migrator !== null ? (0, react_jsx_runtime.jsx)(MigrateDialog, {
                         toolCount: "{count} tools",
                         advanced: "Advanced",
                         currentVersion: "dsh-skill-mcp-panel",
-                        checkUpdateAvailable: "Update available: v",
-                        checkUpdateCurrent: " (current v",
-                        checkUpdateHint: "). Run dsh-panel update in a terminal to install it",
                         tabMyServers: "My MCP",
                         tabPresets: "Built-in MCP",
                         builtinMcpNote: "Built-in MCP services come pre-configured with built-in credentials and can be toggled on/off in place.",
@@ -2759,14 +2706,13 @@ function mcpWireScalar(text) {
                                 })
                         });
                 }
-                function McpSection({ t, listMcp, saveMcp, removeMcp, setEnabledMcp, testMcp, reloadMcp, checkUpdateRemote }: any) {
+                function McpSection({ t, listMcp, saveMcp, removeMcp, setEnabledMcp, testMcp, reloadMcp }: any) {
                         const [loadState, setLoadState] = react.useState({ kind: "loading" } as any);
                         const [data, setData] = react.useState(null as any);
                         const [mcpSubTab, setMcpSubTab] = react.useState("user");
                         const [request, setRequest] = react.useState(0);
                         const [editing, setEditing] = react.useState(null as any);
                         const [dialogBusy, setDialogBusy] = react.useState(false);
-                        const [updateBanner, setUpdateBanner] = react.useState(null);
                         const [dialogError, setDialogError] = react.useState(null);
                         const [confirming, setConfirming] = react.useState(null);
                         const [testing, setTesting] = react.useState(null);
@@ -2790,16 +2736,6 @@ function mcpWireScalar(text) {
                                 return () => clearTimeout(timer);
                         }, [confirming]);
 
-                        react.useEffect(() => {
-                                let current = true;
-                                Promise.resolve().then(() => checkUpdateRemote()).then((snapshot) => {
-                                        if (!current) return;
-                                        const currentV = snapshot !== null && typeof snapshot === "object" && typeof snapshot.current === "string" ? snapshot.current : "";
-                                        const latest = snapshot !== null && typeof snapshot === "object" && typeof snapshot.latest === "string" ? snapshot.latest : null;
-                                        if (latest !== null && snapshot.updateAvailable === true) setUpdateBanner(t("checkUpdateAvailable") + latest + t("checkUpdateCurrent") + currentV + t("checkUpdateHint"));
-                                }, () => {});
-                                return () => { current = false; };
-                        }, [checkUpdateRemote, t]);
                         const servers = data?.servers ?? [];
                         const external = data?.externalServers ?? [];
                         const presets = data?.presets ?? [];
@@ -3121,17 +3057,7 @@ function mcpWireScalar(text) {
                         docOpen ? (0, react_jsx_runtime.jsxs)("div", {
                                                         className: m.doc,
                                                         children: [(0, react_jsx_runtime.jsx)("h4", { children: t !== null ? t("docTitle") : "" }), (0, react_jsx_runtime.jsx)("p", { children: t !== null ? t("docLead") : "" }), (0, react_jsx_runtime.jsx)("pre", { className: m.docCode, children: t !== null ? t("docCode") : "" }), (0, react_jsx_runtime.jsx)("p", { children: t !== null ? t("docWhere") : "" }), (0, react_jsx_runtime.jsx)("p", { children: t !== null ? t("docTools") : "" }), (0, react_jsx_runtime.jsx)("p", { children: t !== null ? t("docEnv") : "" }), (0, react_jsx_runtime.jsx)("pre", { className: m.docCode, children: t !== null ? t("docEnvCode") : "" }), (0, react_jsx_runtime.jsx)("p", { children: t !== null ? t("docEnvNote") : "" }), (0, react_jsx_runtime.jsx)("p", { children: t !== null ? t("docSecret") : "" })]
-                                                }) : null, updateBanner !== null ? (0, react_jsx_runtime.jsxs)("div", {
-                                        className: c.notice,
-                                        "data-kind": "info",
-                                        role: "status",
-                                        children: [(0, react_jsx_runtime.jsx)("span", { className: c.noticeText, children: updateBanner }), (0, react_jsx_runtime.jsx)("button", {
-                                                type: "button",
-                                                className: c.noticeButton,
-                                                onClick: () => { setUpdateBanner(null); },
-                                                children: t !== null ? t("close") : ""
-                                        })]
-                                }) : null, patch?.ok === false ? (0, react_jsx_runtime.jsxs)("div", {
+                                                }) : null, patch?.ok === false ? (0, react_jsx_runtime.jsxs)("div", {
                                         className: c.notice,
                                         "data-kind": "error",
                                         children: [(0, react_jsx_runtime.jsx)("span", { className: c.noticeText, children: t !== null ? t("patchBroken") + " " + (patch.error ?? "") : "" }), (0, react_jsx_runtime.jsx)("button", {
@@ -3996,7 +3922,6 @@ function mcpWireScalar(text) {
 				listGroups: () => callRemote("groups"),
 				saveGroupSkill: (payload) => callRemote("saveGroup", payload),
 				deleteGroupSkill: (payload) => callRemote("deleteGroup", payload),
-				checkUpdateRemote: () => callRemote("checkUpdate"),
 				removeSkill: (name, scope) => callRemote("deleteSkill", name, currentSessionId(), scope),
 				addSkill: (payload) => callRemote("addSkill", currentSessionId(), payload)
 			});

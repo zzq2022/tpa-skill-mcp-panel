@@ -34,7 +34,6 @@ import {
 } from "./mcp/model.js";
 import { loadBuiltinMcpPresets, presetToServerInput } from "./mcp/builtin.js";
 import { probeMcpServer } from "./mcp/probe.js";
-import { runSkillCli } from "./cli-skill.js";
 import { ProfileError, knownProfileList, requireProfile, type ProfileInfo } from "./profiles.js";
 
 function profilePatchPath(profile: string): string {
@@ -65,10 +64,9 @@ function usage() {
     "  dsh-panel mcp enable <serverName> --profile <name>",
     "  dsh-panel mcp disable <serverName> --profile <name>",
     "  dsh-panel mcp test <serverName> --profile <name>",
-    "  dsh-panel mcp update [--yes] [--profile <name>]      等价于 dsh-panel update",
     "",
     "公共参数:",
-    "  --profile <name>                    目标 profile，必须已存在；除 update 外必填",
+    "  --profile <name>                    目标 profile，必须已存在（必填）",
     "                                      名字打错会被拒绝，绝不会新建 profile",
     "",
     "说明: MCP 配置写入指定 profile 的 cordis.patch.yml 受管块；网关在线时自动热加载。",
@@ -185,9 +183,6 @@ export async function runMcpCli(args: string[]): Promise<number> {
     return command === undefined ? 2 : 0;
   }
 
-  if (command === "update") {
-    return runSkillCli(["update", ...args.slice(1)]);
-  }
 
   const flags: any = { profile: undefined, yes: false };
   const positional: string[] = [];
